@@ -1,0 +1,320 @@
+.cb__main {
+  height: 100%;
+  position: relative;
+}
+
+.chatbot {
+  position: absolute;
+  z-index: 200;
+  width: 100%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  height: 44%;
+}
+
+.chatbot__container {
+  position: relative;
+  top: 0;
+  margin: auto;
+  display: grid;
+  place-content: center;
+
+  /* background: red; */
+  height: 16rem;
+  aspect-ratio: 1;
+  border-radius: 100vw;
+  /* z-index: 1000; */
+  /* overflow: clip; */
+}
+
+.chatbot__container::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 58%;
+  display: block;
+  aspect-ratio: 1;
+  width: 13em;
+  border-radius: 100vw;
+  background-color: #ff7b08;
+  filter: blur(70px);
+  z-index: -1;
+}
+
+.chatbot__container::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 58%;
+  display: block;
+  aspect-ratio: 1;
+  width: 13em;
+  border-radius: 100vw;
+  background-color: #5cd98c;
+  filter: blur(70px);
+  z-index: -1;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  /* backdrop-filter: blur(75px); */
+  z-index: 1;
+}
+
+.chatbot--video {
+  opacity: 1;
+  position: relative;
+  display: block;
+  height: 16rem;
+  aspect-ratio: 1;
+  max-width: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  z-index: 1000;
+}
+
+.mode-select__container {
+  position: relative;
+  margin-top: 0px;
+  border-radius: 100vw;
+  outline-offset: 5px;
+  max-width: 10rem;
+  width: 40%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  overflow: clip;
+}
+
+.mode-select {
+  width: 100%;
+  margin-left: 2rem;
+  height: 1.8rem;
+  background-color: transparent;
+  appearance: none;
+  border: 0;
+  outline: 0;
+  /* outline: 1px solid rgba(0, 0, 0, 0.9); */
+}
+
+.mode-select option {
+  overflow: visible;
+  margin-left: -2rem;
+}
+
+.mode-select__container::before {
+  content: "🎨";
+  position: absolute;
+  display: grid;
+  place-items: center;
+  top: 0;
+  height: 1.8rem;
+  width: 1.8rem;
+  left: 0;
+}
+
+.mode-select__container::after {
+  content: "+";
+  display: grid;
+  text-align: center;
+  height: 100%;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  position: absolute;
+}
+
+/* Should I use list for Select menu? */
+li:nth-child(2)::marker {
+  content: "⚖️";
+}
+li:nth-child(3)::marker {
+  content: "🎯";
+}
+
+.chatbox {
+  --modal-padding: 25px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+  max-height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 900px;
+  width: 100%;
+  /* height: calc(55% - var(--modal-padding) * 2); */
+}
+
+.chat__window {
+  width: 97%;
+  margin-inline: auto;
+  overflow-y: scroll;
+}
+
+.chat__window::-webkit-scrollbar {
+  width: 0;
+}
+
+.chat__main {
+  display: flex;
+  align-items: end;
+  width: 100%;
+}
+
+.input__container {
+  display: flex;
+  align-items: end;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.75em 0.9em;
+  border-radius: 22px;
+
+  width: 100%;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.control--send {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  width: 1.8rem;
+  background-color: transparent;
+  border: 0;
+  margin-left: 10px;
+}
+
+.control--send svg {
+  width: 100%;
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+.control--mic {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  margin-left: 10px;
+  height: 3.5rem;
+  aspect-ratio: 1;
+  border-radius: 100vw;
+  background-color: #ff7d08;
+  cursor: pointer;
+}
+.control--mic img {
+  height: 1.75em;
+  filter: invert(100%);
+}
+
+.searchbox {
+  max-height: 30vh;
+  width: 100%;
+  line-height: 1.5;
+  font-family: inherit;
+  font-size: 1.25rem;
+  text-align: start;
+  background: transparent;
+
+  border: none;
+  overflow: hidden;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.8em;
+  /* min-height: 3.5em; */
+  /* background-color: black; */
+}
+
+.user-message {
+  margin-left: auto;
+  background-color: #ff7d08;
+  color: #fff;
+  font-size: 1.125rem;
+  border-radius: 16px 4px 16px 16px;
+  padding: 0.6em 0.8em;
+  height: max-content;
+  max-width: 80%;
+}
+
+.bot-message {
+  margin-right: auto;
+  background-color: #f1f3f4;
+  color: #222;
+  font-size: 1.125rem;
+  border-radius: 1em 1em 1em 0.22em;
+  padding: 0.6em 0.8em;
+  height: max-content;
+  max-width: 80%;
+}
+
+.word__counter {
+  position: absolute;
+  bottom: -24px;
+  right: 70px;
+}
+
+.word__counter.exceeding {
+  color: red;
+}
+
+.control--send[disabled],
+.control--mic[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.recording::after,
+.recording::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  background-color: #ff7d08;
+}
+
+.recording::after {
+  opacity: 0.3;
+  animation: pulse 1000ms 250ms infinite;
+}
+
+.recording::before {
+  opacity: 0.3;
+  animation: pulse 1000ms 0ms infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
