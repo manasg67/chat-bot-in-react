@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import idle from "../assets/idle.mp4";
-//import idle2 from "../assets/idle2.mp4";
 import "./Chatbot.css";
 
 function Chatbot() {
@@ -60,13 +59,13 @@ function Chatbot() {
   const fetchResponse = () => {
     return new Promise((resolve, reject) => {
       const success = true;
-      const delay = 2000;
+      const delay = 1000;
 
       setTimeout(() => {
         if (success) {
           resolve({
             from: "bot",
-            message: "indeed",
+            message: "Ralph is god.....",
           });
         } else {
           reject("Error: Failed to fetch data.");

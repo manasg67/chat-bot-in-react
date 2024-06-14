@@ -1,13 +1,15 @@
 .cb__main {
   height: 100%;
+  width: 100%;
   position: relative;
+  background-color: #222;
 }
 
 .chatbot {
   position: absolute;
   z-index: 200;
   width: 100%;
-  top: 0;
+  top: 10%;
   left: 50%;
   transform: translate(-50%);
   height: 44%;
@@ -51,7 +53,7 @@
   aspect-ratio: 1;
   width: 13em;
   border-radius: 100vw;
-  background-color: #5cd98c;
+  background-color: #ff7b08;
   filter: blur(70px);
   z-index: -1;
 }
@@ -65,7 +67,7 @@
 
 .chatbot--video {
   opacity: 1;
-  position: relative;
+  position: absolute;
   display: block;
   height: 16rem;
   aspect-ratio: 1;
@@ -124,22 +126,14 @@
   position: absolute;
 }
 
-/* Should I use list for Select menu? */
-li:nth-child(2)::marker {
-  content: "⚖️";
-}
-li:nth-child(3)::marker {
-  content: "🎯";
-}
-
 .chatbox {
   --modal-padding: 25px;
   position: absolute;
-  bottom: 0;
+  bottom: 3%;
   left: 50%;
   transform: translate(-50%);
   z-index: 1;
-  max-height: 75%;
+  max-height: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,6 +163,7 @@ li:nth-child(3)::marker {
   display: flex;
   align-items: end;
   border: 1px solid rgba(0, 0, 0, 0.5);
+  border-color: #f1f3f4;
   padding: 0.75em 0.9em;
   border-radius: 22px;
 
@@ -223,7 +218,6 @@ img {
   font-size: 1.25rem;
   text-align: start;
   background: transparent;
-
   border: none;
   overflow: hidden;
   outline: none;
@@ -231,7 +225,7 @@ img {
   margin: 0;
   word-wrap: break-word;
   white-space: pre-wrap;
-
+color: #f1f3f4;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -272,6 +266,7 @@ img {
 
 .word__counter {
   position: absolute;
+  color: #f1f3f4;
   bottom: -24px;
   right: 70px;
 }
