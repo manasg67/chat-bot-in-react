@@ -1,5 +1,4 @@
 import { useState } from "react";
-//import avatar from "./assets/avatar.jpeg";
 import idle from "./assets/idle.mp4";
 import Modal from "react-modal";
 import Chatbot from "./components/Chatbot";
@@ -15,15 +14,20 @@ const customStyles = {
 };
 
 function App() {
-  const [visible, setisvisible] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const toggleModal = () => {
+    console.log("Toggling modal");
+    setVisible(!visible);
+  };
 
   return (
     <div>
       <Modal isOpen={visible} style={customStyles}>
-        <Chatbot />
+        <Chatbot onClose={toggleModal} />
       </Modal>
       <video
-        onClick={() => setisvisible(!visible)}
+        onClick={toggleModal}
         muted
         src={idle}
         autoPlay={true}

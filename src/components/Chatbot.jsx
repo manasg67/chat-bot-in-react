@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import idle from "../assets/idle.mp4";
-import "./Chatbot.css";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
+import "./Chatbot.css"; 
 
-function Chatbot() {
+import idle from "../assets/idle.mp4";
+
+function Chatbot({ onClose }) {
   const searchBox = useRef(null);
   const messagesEndRef = useRef(null);
 
@@ -10,6 +14,12 @@ function Chatbot() {
   const [text, setText] = useState("");
   const [isResponding, setIsResponding] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+
+const handleClose = () => {
+  console.log("Closing modal");
+  onClose(); // Call onClose function passed from parent (App)
+};
+
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -49,13 +59,14 @@ function Chatbot() {
       setIsResponding(false);
     });
   };
+
   const handleKeyDown = (e) => {
-    // Check if Enter key is pressed
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSearch();
     }
   };
+
   const fetchResponse = () => {
     return new Promise((resolve, reject) => {
       const success = true;
@@ -65,7 +76,7 @@ function Chatbot() {
         if (success) {
           resolve({
             from: "bot",
-            message: "Ralph is god.....",
+            message: "Hello! Welcome to OHA. How can I help you today ?",
           });
         } else {
           reject("Error: Failed to fetch data.");
@@ -99,59 +110,180 @@ function Chatbot() {
     };
   };
 
+ 
+
   return (
-    <div className="cb__main">
-      <section className="chatbot">
-        {/* <div className="backdrop"></div> */}
-        <div className="chatbot__container">
+    <div
+    className="cb__main"
+    style={{
+      height: "55%",
+      width: "29%",
+      left: "85%",
+      top:'40%',
+      borderRadius: "1vw",
+      position: "relative",
+      backgroundColor: "white",
+      transform: "translate(-50%, 0)",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      borderWidth: "1px",
+      borderStyle: "solid",
+      borderColor: "#ddd",
+    }}
+  >
+    <button
+      className="control--close"
+      onClick={handleClose}
+      style={{
+        position: "absolute",
+        top: "10px",
+        right: "10px",
+        backgroundColor: "transparent",
+        border: "none",
+        fontSize: "1.5rem",
+        cursor: "pointer",
+      }}
+      >
+        x
+      </button>
+      <section
+        className="chatbot"
+        style={{
+          position: "absolute",
+          zIndex: 200,
+          width: "100%",
+          top: "0%",
+          left: "50%",
+          transform: "translate(-50%, 0)",
+          height: "44%"
+                }}
+      >
+        <div
+          className="chatbot__container"
+          style={{
+            position: "relative",
+            margin: "auto",
+            display: "grid",
+            placeContent: "center",
+            height: "16rem",
+            aspectRatio: "1",
+            borderRadius: "100vw",
+          }}
+        >
           <video
             className="chatbot--video"
             muted
             src={idle}
             autoPlay={true}
             loop={false}
+            style={{
+              opacity: 1,
+              position: "relative",
+              display: "block",
+              height: "10rem",
+              aspectRatio: "1",
+              maxWidth: "100%",
+              borderRadius: "inherit",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+              objectFit: "cover",
+              zIndex: 1000,
+            }}
           />
+          <h2 style={{ position: "relative", left: "13%",color:'#ff7d08' }}>Ask Buddy</h2>
         </div>
-
       </section>
-      <section className="chatbox">
-        <div className="chat__window">
+      <section
+        className="chatbox"
+        style={{
+          position: "absolute",
+          bottom: "3%",
+          left: "50%",
+          transform: "translate(-50%, 0)",
+          zIndex: 1,
+          maxHeight: "50%",
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "white",
+          justifyContent: "flex-end",
+          maxWidth: "900px",
+          width: "100%",
+        }}
+      >
+        <div
+          className="chat__window"
+          style={{
+            width: "97%",
+            marginInline: "auto",
+            overflowY: "scroll",
+          }}
+        >
           {chats.map((chat, index) => {
-            {
-              if (chat.from === "user") {
-                return (
-                  <div key={index} className="message">
-                    <span className="user-message">{chat.message}</span>
-                  </div>
-                );
-              } else if (chat.from === "bot") {
-                return (
-                  <div key={index} className="message">
-                    <span className="bot-message">{chat.message}</span>
-                  </div>
-                );
-              }
+            if (chat.from === "user") {
+              return (
+                <div key={index} className="message" style={{ textAlign: "right" }}>
+                  <span
+                    className="user-message"
+                    style={{
+                      backgroundColor: "#f1f3f4",
+                      color: "#222",
+                      fontSize: "1.125rem",
+                      borderRadius: "16px 4px 16px 16px",
+                      padding: "0.6em 0.8em",
+                      height: "max-content",
+                      display: "inline-block",
+                      maxWidth: "80%",
+                    }}
+                  >
+                    {chat.message}
+                  </span>
+                </div>
+              );
+            } else if (chat.from === "bot") {
+              return (
+                <div key={index} className="message" style={{ textAlign: "left" }}>
+                  <span
+                    className="bot-message"
+                    style={{
+                      backgroundColor: "#ffe8d6",
+                      color: "#222",
+                      fontSize: "1.125rem",
+                      borderRadius: "1em 1em 1em 0.22em",
+                      padding: "0.6em 0.8em",
+                      height: "max-content",
+                      display: "inline-block",
+                      maxWidth: "50%",
+                    }}
+                  >
+                    {chat.message}
+                  </span>
+                </div>
+              );
             }
           })}
           <div ref={messagesEndRef} aria-hidden={true} />
         </div>
 
-        <div className="chat__main">
-          <div className="input__container">
+        <div
+          className="chat__main" 
+         >
+          <div
+            className="input__container"
+           >
             <textarea
               ref={searchBox}
               placeholder={isRecording ? "Listening..." : "Ask me anything..."}
               className="searchbox"
               onChange={(e) => setText(e.target.value)}
-              onKeyDown={handleKeyDown} // Listen for Enter key press
+              onKeyDown={handleKeyDown}
               value={text}
               maxLength={100}
               rows={1}
+              
             ></textarea>
             <button
               disabled={isResponding || text.length == 0}
               className="control--send"
               onClick={() => handleSearch()}
+         
             >
               {text.length == 0 ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -171,11 +303,6 @@ function Chatbot() {
           >
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyUlEQVR4nO2UTQrCMBCFPxe6cm3xNv4cQfQyrkTBehkRpBfQpVK9ROuyXkAigaeU2grR4MZ+MItMXua1EzLwL7SAFZACCRAq540QMIWwOW+kJQYXnwamImqDJ3WLXtgAB6CpdVLSJptDmiOwxoGzivTePLSl9gZan1wMFjoUAQ2NhVBfXRwVkbQzF4MucNXBeYXGGk+lyYAARybATQW2QB9oK4bATntWM+JDxrk/KYvsm+IPAvU3zhWOlevgGeN7yP3cYK/LrcEbd22kaWbj45q9AAAAAElFTkSuQmCC" />
           </button>
-          <div
-            className={`${text.length >= 100 ? "exceeding" : ""} word__counter`}
-          >
-            {text === "" ? 0 : text.length}/100
-          </div>
         </div>
       </section>
     </div>
