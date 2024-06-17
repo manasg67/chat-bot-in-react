@@ -1,49 +1,202 @@
+* {
+  box-sizing: border-box;
+}
+
+.chatbot {
+  width: 100%;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-items: start;
+}
+
+.cb-close__button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0.5rem;
+  height: 30px;
+  aspect-ratio: 1;
+  background-color: #f1f3f4;
+  border: none;
+  border-radius: 100vw;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.cb-close__button:hover {
+  background-color: #e0e0e0;
+}
+
+.cb-close__button svg {
+  height: 100%;
+  width: 100%;
+}
+
+.chatbot__container {
+  position: relative;
+  top: 0;
+  margin: 0 auto;
+  display: grid;
+  place-content: center;
+  height: 100px;
+  aspect-ratio: 1;
+  border-radius: 100vw;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.chatbot--img {
+  max-width: 100%;
+  scale: 1.15;
+  transform: translateY(5px);
+  border-radius: inherit;
+  object-fit: cover;
+  z-index: 1000;
+  object-position: left top;
+}
+
+.chatbot__title {
+  margin: 0 auto;
+  text-align: center;
+  color: hsl(30, 90%, 48%);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.cb__main {
+  overscroll-behavior: contain;
+  position: relative;
+  padding: 0px 7px 0px 12px;
+  overflow-y: scroll;
+  height: calc(100% - 188px);
+}
+
+.cb__main::-webkit-scrollbar {
+  width: 5px;
+}
+
+.cb__main::-webkit-scrollbar-track {
+  border-radius: inherit;
+  padding-top: 50px;
+}
+
+/* Handle */
+.cb__main::-webkit-scrollbar-thumb {
+  width: 5px;
+  background: rgba(0, 0, 0, 0.125);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.cb__main::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* blobs */
+
+/* .chatbot__container::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 58%;
+  display: block;
+  aspect-ratio: 1;
+  width: 13em;
+  border-radius: 100vw;
+  background-color: #ff7b08;
+  filter: blur(70px);
+  z-index: -1;
+}
+
+.chatbot__container::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 58%;
+  display: block;
+  aspect-ratio: 1;
+  width: 13em;
+  border-radius: 100vw;
+  background-color: #5cd98c;
+  filter: blur(70px);
+  z-index: -1;
+} */
+
+/* for video */
+
+/* .chatbot--video {
+  opacity: 1;
+  position: relative;
+  display: block;
+  height: 16rem;
+  aspect-ratio: 1;
+  max-width: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  z-index: 1000;
+} */
+
+.chatbox {
+  --message-spacing: 0.6rem;
+
+  min-height: calc(100% - 110px - 63px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.chat__window {
+  height: 100%;
+  width: 100%;
+}
 
 .chat__main {
+  background-color: #ffffff;
+  width: calc(100% - 2 * 12px);
+  padding-bottom: 15px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: calc(100% - 68px);
   display: flex;
-  align-items: end;
-  width: 100%;
+  align-items: center;
+  gap: 15px;
 }
 
 .input__container {
   display: flex;
-  align-items: end;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-color: #f4f4f4;
-  background: #f4f4f4;
-  padding: 0.75em 0.9em;
-  border-radius: 22px;
-  width: 70%;
-  margin-left: 20px;
-}
-
-.searchbox {
-  max-height: 30vh;
+  align-items: center;
+  /* border: 1px solid rgba(0, 0, 0, 0.6); */
+  background-color: #f1f3f4;
+  padding: 0.9em 1.1em 0.9em 1.4em;
+  border-radius: 100vw;
+  margin-inline: auto;
   width: 100%;
-  line-height: 1.5;
-  font-family: inherit;
-  font-size: 1.25rem;
-  text-align: start;
-  background: #f4f4f4;
-  border: none;
-  overflow: hidden;
-  outline: none;
-  padding: 0;
-  margin: 0;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  color: #222;
-  resize: none;
 }
 
 .control--send {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-self: center;
   padding: 0;
   width: 1.8rem;
   background-color: transparent;
   border: 0;
-  margin-left: 30px;
+  margin-left: 10px;
+}
+
+.control--send svg {
+  width: 100%;
+  margin-top: 0px;
+  cursor: pointer;
 }
 
 .control--mic {
@@ -53,46 +206,104 @@
   place-items: center;
   border: 0;
   padding: 0;
-  margin-left: 30px;
-  height: 3.5rem;
+  width: 4rem;
   aspect-ratio: 1;
   border-radius: 100vw;
   background-color: #ff7d08;
   cursor: pointer;
+  transition: background-color 0ms;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .control--mic img {
-  height: 1.75em;
+  height: 1.75rem;
   filter: invert(100%);
+}
+
+.searchbox {
+  max-height: 30vh;
+  width: 100%;
+  line-height: 1.5;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: start;
+  background: transparent;
+
+  border: none;
+  overflow: hidden;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none;
 }
 
 .message {
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 0.8em;
+  margin-bottom: var(--message-spacing);
+}
+
+.message:last-child {
+  background-color: red;
+  margin-bottom: calc(var(--message-spacing) - 4px);
+}
+
+.message span {
+  display: block;
+  min-height: 100%;
+  font-weight: 500;
 }
 
 .user-message {
   margin-left: auto;
-  background-color: #ff7d08;
-  color: #fff;
-  font-size: 1.125rem;
-  border-radius: 16px 4px 16px 16px;
-  padding: 0.6em 0.8em;
+  background-color: #f1f3f4;
+  color: #222;
+  font-size: 1rem;
+  border-radius: 1.5em;
+  padding: 0.5em 0.9em;
   height: max-content;
   max-width: 80%;
 }
 
 .bot-message {
   margin-right: auto;
-  background-color: #f1f3f4;
+  background-color: #fedebe;
+
   color: #222;
-  font-size: 1.125rem;
-  border-radius: 1em 1em 1em 0.22em;
-  padding: 0.6em 0.8em;
+  font-size: 1rem;
+  border-radius: 100vw;
+  padding: 0.5em 0.9em;
+  min-height: var(--message-block-size);
   height: max-content;
   max-width: 80%;
+}
+
+.word__counter {
+  position: absolute;
+  bottom: -24px;
+  right: 70px;
+}
+
+.word__counter.exceeding {
+  color: red;
+}
+
+.control--send[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.control--mic[disabled] {
+  background-color: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
 }
 
 .recording::after,
