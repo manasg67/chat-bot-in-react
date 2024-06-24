@@ -14,21 +14,19 @@ const customStyles = {
 };
 
 function App() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setisvisible] = useState(false);
 
-  const toggleModal = () => {
-    console.log("Toggling modal");
-    setVisible(!visible);
+  const handleVisible = () => {
+    setisvisible((prev) => !prev);
   };
 
   return (
     <div>
       <Modal isOpen={visible} style={customStyles}>
-        <Chatbot onClose={toggleModal} />
+      <Chatbot change={handleVisible} />
       </Modal>
       <video
-        onClick={toggleModal}
-        muted
+        onClick={() => handleVisible()}         
         src={idle}
         autoPlay={true}
         loop={true}
